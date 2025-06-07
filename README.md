@@ -40,4 +40,39 @@ while True:
         preds = model.predict(face)
         emotion_label = emotions[np.argmax(preds)]
 ```
+## version 2
+In version two, we didn't freeze all the base MobileNet layers, but we let them be tunable.
 
+### stopping criterion
+If the validation loss does not decrease per 3 epochs, we scale down the learning rate by 0.5, so in this case my learning rate diminished 2 zero at 12th epoch.
+I had a good training accuracy, but the validation is a mess.
+
+## Training results version two
+```cmd
+Almost 4 hours of training
+718/718 ━━━━━━━━━━━━━━━━━━━━ 2245s 3s/step - accuracy: 0.4207 - loss: 1.5160 - val_accuracy: 0.4024 - val_loss: 4.6760 - learning_rate: 0.0010
+Epoch 2/20
+718/718 ━━━━━━━━━━━━━━━━━━━━ 1708s 2s/step - accuracy: 0.5682 - loss: 1.1740 - val_accuracy: 0.3447 - val_loss: 2.5368 - learning_rate: 0.0010
+Epoch 3/20
+718/718 ━━━━━━━━━━━━━━━━━━━━ 1721s 2s/step - accuracy: 0.6081 - loss: 1.0879 - val_accuracy: 0.2416 - val_loss: 5.3716 - learning_rate: 0.0010
+Epoch 4/20
+718/718 ━━━━━━━━━━━━━━━━━━━━ 1712s 2s/step - accuracy: 0.6152 - loss: 1.0426 - val_accuracy: 0.3534 - val_loss: 2.8870 - learning_rate: 0.0010
+Epoch 5/20
+718/718 ━━━━━━━━━━━━━━━━━━━━ 1719s 2s/step - accuracy: 0.6569 - loss: 0.9332 - val_accuracy: 0.5245 - val_loss: 1.5071 - learning_rate: 5.0000e-04
+Epoch 6/20
+718/718 ━━━━━━━━━━━━━━━━━━━━ 1717s 2s/step - accuracy: 0.6837 - loss: 0.8599 - val_accuracy: 0.5518 - val_loss: 1.3953 - learning_rate: 5.0000e-04
+Epoch 7/20
+718/718 ━━━━━━━━━━━━━━━━━━━━ 1717s 2s/step - accuracy: 0.7034 - loss: 0.8058 - val_accuracy: 0.6088 - val_loss: 1.1472 - learning_rate: 5.0000e-04
+Epoch 8/20
+718/718 ━━━━━━━━━━━━━━━━━━━━ 1709s 2s/step - accuracy: 0.7223 - loss: 0.7705 - val_accuracy: 0.6123 - val_loss: 1.1347 - learning_rate: 5.0000e-04
+Epoch 9/20
+718/718 ━━━━━━━━━━━━━━━━━━━━ 1711s 2s/step - accuracy: 0.7361 - loss: 0.7284 - val_accuracy: 0.6102 - val_loss: 1.1925 - learning_rate: 5.0000e-04
+Epoch 10/20
+718/718 ━━━━━━━━━━━━━━━━━━━━ 1722s 2s/step - accuracy: 0.7548 - loss: 0.6753 - val_accuracy: 0.6325 - val_loss: 1.1186 - learning_rate: 5.0000e-04
+Epoch 11/20
+718/718 ━━━━━━━━━━━━━━━━━━━━ 1702s 2s/step - accuracy: 0.7661 - loss: 0.6437 - val_accuracy: 0.5816 - val_loss: 1.3820 - learning_rate: 5.0000e-04
+Epoch 12/20
+718/718 ━━━━━━━━━━━━━━━━━━━━ 1706s 2s/step - accuracy: 0.7870 - loss: 0.5944 - val_accuracy: 0.6211 - val_loss: 1.2341 - learning_rate: 5.0000e-04
+Epoch 13/20
+ 67/718 ━━━━━━━━━━━━━━━━━━━━ 25:36 2s/step - accuracy: 0.8312 - loss: 0.4757
+```
