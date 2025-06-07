@@ -76,3 +76,4 @@ Epoch 12/20
 Epoch 13/20
  67/718 ━━━━━━━━━━━━━━━━━━━━ 25:36 2s/step - accuracy: 0.8312 - loss: 0.4757
 ```
+#### could not upload unfreezed trained model due to size issues.
